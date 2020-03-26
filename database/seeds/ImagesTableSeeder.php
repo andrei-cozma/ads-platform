@@ -11,7 +11,7 @@ class ImagesTableSeeder extends Seeder
      */
     public function run()
     {
-        // we need separate queries for each image for setting as default first occurrence
+        // we need separate queries for each image for setting as main image the first occurrence
         for ($i = 0; $i < 300; $i++) {
             factory(App\Image::class)->create();
         }

@@ -17,7 +17,7 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('ad_id');
             $table->string('name');
-            $table->unsignedTinyInteger('default')->default(0);
+            $table->unsignedTinyInteger('main')->default(0);
             $table->timestamps();
 
             $table->foreign('ad_id')->references('id')->on('ads')->onUpdate('cascade')->onDelete('cascade');
