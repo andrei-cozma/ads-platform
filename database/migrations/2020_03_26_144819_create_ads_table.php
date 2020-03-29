@@ -16,6 +16,7 @@ class CreateAdsTable extends Migration
         Schema::create('ads', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('city_id');
             $table->string('name');
             $table->float('price');
             $table->string('currency')->default('Eur');
@@ -23,6 +24,7 @@ class CreateAdsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -34,7 +36,7 @@ class CreateAdsTable extends Migration
     public function down()
     {
         Schema::table('ads', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+            $table->dropForeign(['user_id', 'city_id']);
         });
         Schema::dropIfExists('ads');
     }

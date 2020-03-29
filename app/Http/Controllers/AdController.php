@@ -7,14 +7,11 @@ use Illuminate\Http\Request;
 
 class AdController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('ad.index', [
+            'ads' => Ad::take(10)->get()
+        ]);
     }
 
     /**

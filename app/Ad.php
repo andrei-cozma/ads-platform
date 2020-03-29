@@ -11,6 +11,11 @@ class Ad extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
     public function mainImage()
     {
         return $this->hasOne(Image::class)->where('main', 1)->withDefault([

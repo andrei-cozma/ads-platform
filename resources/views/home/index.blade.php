@@ -12,7 +12,7 @@
             </div>
         @endforeach
         <div class="col-6 col-md-2 d-flex align-items-center">
-            <a href="#">{{ __('text.View all') }}</a>
+            <a href="{{ route('ads.index') }}">{{ __('text.View all') }}</a>
         </div>
     </div>
 @endsection
