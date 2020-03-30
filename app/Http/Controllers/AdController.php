@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ad;
+use App\Repositories\AdsRepositoryInterface;
 use Illuminate\Http\Request;
 
 class AdController extends Controller
@@ -78,5 +79,12 @@ class AdController extends Controller
     public function destroy(Ad $ad)
     {
         //
+    }
+
+    public function search(AdsRepositoryInterface $adsRepository, Request $request)
+    {
+        $ads = $adsRepository->search($request->input('query'));
+
+        return view('ad.search', compact('ads'));
     }
 }

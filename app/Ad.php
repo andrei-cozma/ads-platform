@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Traits\ElasticSearchTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Ad extends Model
 {
+    use ElasticSearchTrait;
+
     public function user()
     {
         return $this->belongsTo(User::class);

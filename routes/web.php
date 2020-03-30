@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('ads/search', 'AdController@search')->name('ads.search');
 Route::resource('ads', 'AdController');
 
 Auth::routes();

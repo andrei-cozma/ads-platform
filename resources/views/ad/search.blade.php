@@ -1,14 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="row">
-        <div class="col">
-            <form action="{{ route('ads.search') }}" method="get">
-                <input type="text" name="query" placeholder="{{ __('text.Search here') }}">
-            </form>
-        </div>
-    </div>
-    <h2>{{ __('text.Promoted') }}</h2>
+    <h2>{{ __('text.Ads for') }} {{ request('query') }}</h2>
     @foreach($ads as $ad)
         <div class="row">
             <div class="col-md-3">
