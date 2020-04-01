@@ -25,15 +25,25 @@ class AdController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'city_id' => 'required|integer',
+            'name' => 'required|string',
+            'price' => 'numeric',
+            'currency' => 'string',
+            'description' => 'required|string'
+        ]);
+
+        $ad = new Ad;
+        $ad->user_id = auth()->user()->id;
+        $ad->city_id = $validatedData['city_id'];
+        $ad->name = $validatedData['name'];
+        $ad->price = $validatedData['price'];
+        $ad->currency = $validatedData['currency'];
+        $ad->description = $validatedData['description'];
+        $ad->save();
+
     }
 
     /**
