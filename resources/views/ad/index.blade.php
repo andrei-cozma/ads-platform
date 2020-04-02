@@ -8,13 +8,15 @@
             </form>
         </div>
     </div>
-    <h2>{{ __('text.Promoted') }}</h2>
+    <h2>{{ __('text.All ads') }}</h2>
     @foreach($ads as $ad)
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-md-3">
-                <div class="image">
-                    <img class="img-fluid" src="{{ asset('storage/' . $ad->mainImage->name) }}" alt="{{ $ad->name }}">
-                </div>
+                <a href="{{ route('ads.show', $ad->id) }}">
+                    <div class="image">
+                        <img class="img-fluid" src="{{ asset('storage/' . $ad->mainImage->name) }}" alt="{{ $ad->name }}">
+                    </div>
+                </a>
             </div>
             <div class="col-md-6">
                 <div>
@@ -31,4 +33,7 @@
             </div>
         </div>
     @endforeach
+    <div class="row">
+        <div class="col text-center">{{ $ads->links() }}</div>
+    </div>
 @endsection

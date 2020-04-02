@@ -6,4 +6,5 @@ return [
     'View all' => 'View all',
     'Ads for' => 'Ads for',
     'Search here' => 'Search here',
+    'All ads' => 'All ads',
 ];

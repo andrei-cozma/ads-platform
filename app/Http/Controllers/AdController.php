@@ -11,15 +11,10 @@ class AdController extends Controller
     public function index()
     {
         return view('ad.index', [
-            'ads' => Ad::take(10)->get()
+            'ads' => Ad::simplePaginate(3)
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -46,15 +41,9 @@ class AdController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Ad  $ad
-     * @return \Illuminate\Http\Response
-     */
     public function show(Ad $ad)
     {
-        //
+        return view('ad.show', ['ad' => $ad]);
     }
 
     /**
