@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\ElasticSearchTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Ad extends Model
@@ -36,5 +37,12 @@ class Ad extends Model
     public function images()
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function scopePromotedActive($query)
+    {
+        return $query->leftJoin('promoted_ads', 'ads.id', '=', 'promoted_ads.ad_id')
+            ->where('promoted_ads.promo_start', '<=', Carbon::now())
+            ->where('promoted_ads.promo_end', '>=', Carbon::now());
     }
 }
