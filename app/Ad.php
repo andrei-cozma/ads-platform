@@ -30,7 +30,7 @@ class Ad extends Model
     public function mainImage()
     {
         return $this->hasOne(Image::class)->where('main', 1)->withDefault([
-            'name' => 'placeholder.png'
+            'name' => 'ads/placeholder.png'
         ]);
     }
 
@@ -43,6 +43,7 @@ class Ad extends Model
     {
         return $query->leftJoin('promoted_ads', 'ads.id', '=', 'promoted_ads.ad_id')
             ->where('promoted_ads.promo_start', '<=', Carbon::now())
-            ->where('promoted_ads.promo_end', '>=', Carbon::now());
+            ->where('promoted_ads.promo_end', '>=', Carbon::now())
+            ->select(['ads.id', 'ads.name']);
     }
 }

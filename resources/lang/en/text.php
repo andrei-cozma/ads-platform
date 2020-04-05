@@ -28,4 +28,6 @@ return [
     'Choose city' => 'Choose city',
     'Search' => 'Search',
     'All cities' => 'All cities',
+    'Added' => 'Added',
+    'Back' => 'Back'
 ];

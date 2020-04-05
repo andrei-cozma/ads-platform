@@ -20,7 +20,7 @@ class AdController extends Controller
     public function index()
     {
         return view('ad.index', [
-            'ads' => Ad::with(['mainImage', 'city'])->simplePaginate(10)
+            'ads' => Ad::with(['mainImage', 'city'])->orderBy('updated_at', 'desc')->simplePaginate(10)
         ]);
     }
 

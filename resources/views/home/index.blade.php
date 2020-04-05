@@ -9,9 +9,9 @@
         @foreach($ads as $ad)
             <div class="col-6 col-md-2">
                 <div class="image">
-                    <img class="img-fluid" src="{{ asset('storage/' . $ad->mainImage->name) }}" alt="{{ $ad->name }}">
+                    <a href="{{ route('ads.show', $ad->id) }}"><img class="img-fluid" src="{{ asset('storage/' . $ad->mainImage->name) }}" alt="{{ $ad->name }}"></a>
                 </div>
-                {{ $ad->name }}
+                <a class="text-decoration-none text-body" href="{{ route('ads.show', $ad->id) }}">{{ $ad->name }}</a>
             </div>
         @endforeach
         <div class="col-6 col-md-2 d-flex align-items-center">
