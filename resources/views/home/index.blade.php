@@ -1,7 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
-    <h3>{{ __('text.Promoted ads') }}</h3>
+    <x-search-form/>
+    <div class="row">
+        <div class="col"><h3>{{ __('text.Promoted ads') }}</h3></div>
+    </div>
     <div class="row">
         @foreach($ads as $ad)
             <div class="col-6 col-md-2">

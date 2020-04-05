@@ -21,4 +21,11 @@ return [
     'Email' => 'Email',
     'Phone' => 'Phone',
     'Add' => 'Add',
+    'My Account' => 'My Account',
+    'Create ad' => 'Create ad',
+    'Login' => 'Login',
+    'Register' => 'Register',
+    'Choose city' => 'Choose city',
+    'Search' => 'Search',
+    'All cities' => 'All cities',
 ];

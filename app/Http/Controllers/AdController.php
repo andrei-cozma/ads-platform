@@ -14,13 +14,13 @@ class AdController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth')->except(['index', 'show', 'search']);
     }
 
     public function index()
     {
         return view('ad.index', [
-            'ads' => Ad::simplePaginate(3)
+            'ads' => Ad::with(['mainImage', 'city'])->simplePaginate(10)
         ]);
     }
 
@@ -57,7 +57,6 @@ class AdController extends Controller
             }
         }
 
-
         return redirect('/ads/' . $ad->id);
     }
 
@@ -66,43 +65,9 @@ class AdController extends Controller
         return view('ad.show', ['ad' => $ad]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Ad  $ad
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ad $ad)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Ad  $ad
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Ad $ad)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Ad  $ad
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Ad $ad)
-    {
-        //
-    }
-
     public function search(AdsRepositoryInterface $adsRepository, Request $request)
     {
-        $ads = $adsRepository->search($request->input('query'));
+        $ads = $adsRepository->search($request->input('query'), $request->input('city_id'));
 
         return view('ad.search', compact('ads'));
     }

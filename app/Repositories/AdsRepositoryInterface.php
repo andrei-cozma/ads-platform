@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Collection;
 
 interface AdsRepositoryInterface
 {
-    public function search(string $query = ''): Collection;
+    public function search(string $query = '', int $cityId = 0): Collection;
 }

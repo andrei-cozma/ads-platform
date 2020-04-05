@@ -1,14 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
+    <x-search-form/>
     <div class="row">
-        <div class="col">
-            <form action="{{ route('ads.search') }}" method="get">
-                <input type="text" name="query" placeholder="{{ __('text.Search here') }}">
-            </form>
-        </div>
+        <div class="col"><h2>{{ __('text.All ads') }}</h2></div>
     </div>
-    <h2>{{ __('text.All ads') }}</h2>
     @foreach($ads as $ad)
         <div class="row mb-2">
             <div class="col-md-3">

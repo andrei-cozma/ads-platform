@@ -7,8 +7,14 @@ use Illuminate\Database\Eloquent\Collection;
 
 class AdsEloquentRepository implements AdsRepositoryInterface
 {
-    public function search(string $query = ''): Collection
+    public function search(string $query = '', int $cityId = 0): Collection
     {
-        return Ad::where('name', 'like', "%{$query}%")->get();
+        $sql = Ad::where('name', 'like', "%{$query}%");
+        if ($cityId) {
+            $sql->where('city_id', $cityId);
+        }
+        $ads = $sql->with(['mainImage', 'city']) ->get();
+
+        return $ads;
     }
 }

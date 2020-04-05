@@ -16,19 +16,35 @@ class AdsElasticSearchRepository implements AdsRepositoryInterface
         $this->elasticSearch = $elasticSearch;
     }
 
-    public function search(string $query = ''): Collection
+    public function search(string $query = '', int $cityId = 0): Collection
     {
         $ad = new Ad;
-        $items = $this->elasticSearch->search([
-            'index' => $ad->getSearchIndex(),
-            'body' => [
-                'query' => [
-                    'match_phrase' => [
-                        'name' => $query
+        if ($cityId) {
+            $items = $this->elasticSearch->search([
+                'index' => $ad->getSearchIndex(),
+                'body' => [
+                    'query' => [
+                        'bool' => [
+                            'must' => [
+                                ['match_phrase' => ['name' => $query]],
+                                ['term' => ['city_id' => $cityId]]
+                            ]
+                        ]
                     ]
                 ]
-            ]
-        ]);
+            ]);
+        } else {
+            $items = $this->elasticSearch->search([
+                'index' => $ad->getSearchIndex(),
+                'body' => [
+                    'query' => [
+                        'match_phrase' => [
+                            'name' => $query
+                        ]
+                    ]
+                ]
+            ]);
+        }
 
         $ids = Arr::pluck($items['hits']['hits'], '_id');
 
